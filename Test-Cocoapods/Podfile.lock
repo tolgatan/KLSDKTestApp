@@ -1,0 +1,25 @@
+PODS:
+  - KLCPaaSSDK (1.0.3):
+    - KLCPaaSWebRTC
+  - KLCPaaSWebRTC (1.0.0)
+  - KLMobileSDK (1.0.0):
+    - KLCPaaSWebRTC
+
+DEPENDENCIES:
+  - KLCPaaSSDK
+  - KLMobileSDK
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - KLCPaaSSDK
+    - KLCPaaSWebRTC
+    - KLMobileSDK
+
+SPEC CHECKSUMS:
+  KLCPaaSSDK: cc0565f6e9e3e2342f37b6aa9f9183f106773b6d
+  KLCPaaSWebRTC: 1ef2ead885c6e5afe787e63c3a1cf675f27d2064
+  KLMobileSDK: 776622e57c93273dab0c3b286859ec152a4722f4
+
+PODFILE CHECKSUM: 386c972309e93f466b13549319a6c2d54778e225
+
+COCOAPODS: 1.7.3
