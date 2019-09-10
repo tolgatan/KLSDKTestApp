@@ -60,6 +60,10 @@ UIBackgroundTaskIdentifier backgroundTaskID;
             NSLog(@"Unregistered");
         }
         
+        [self startCallWithVideo:@"CALLTYPE_VIDEO" to:[[SMUriAddress alloc] initWithUsername:@"tolga" withDomain:@"genband.com"] handler:^(NSError *error, id<SMOutgoingCallDelegate> call) {
+            NSLog(@"Call Started");
+        }];
+        
     } else {
         NSLog(@"received notification is not related with the MobileSDK");
     }
@@ -72,6 +76,16 @@ UIBackgroundTaskIdentifier backgroundTaskID;
     
 }
 
+- (void) startCallWithVideo:(NSString*)type to:(SMUriAddress *) calleeAddress handler:(void (^)(NSError *error, id<SMOutgoingCallDelegate> call))completion{
+    
+    [[SMConfiguration getInstance] audioSessionConfiguration].mode = ([type isEqualToString:@"CALLTYPE_VIDEO"]) ? AVAudioSessionModeVideoChat : AVAudioSessionModeVoiceChat;
+    
+    [[[SMServiceProvider getInstance] getCallService] createOutGoingCall:self andTerminator:calleeAddress completion:^(id<SMOutgoingCallDelegate> call, SMMobileError *error) {
+        
+        [call establishAudioCall];
+    }];
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if ([[[SMServiceProvider getInstance] getRegistrationService] getRegistrationState] == REGISTERED) {
@@ -81,6 +95,9 @@ UIBackgroundTaskIdentifier backgroundTaskID;
         NSInteger selectedUserIndex = 15;
         NSLog(@"Unregistered");
     }
+    
+    
+    
     return YES;
 }
 
